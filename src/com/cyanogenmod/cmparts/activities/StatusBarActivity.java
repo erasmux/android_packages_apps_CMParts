@@ -46,7 +46,7 @@ public class StatusBarActivity extends PreferenceActivity {
         /* Battery Percentage */
         mBatteryPercentagePref = (CheckBoxPreference) prefSet.findPreference(BATTERY_PERCENTAGE_PREF);
         mBatteryPercentagePref.setChecked(Settings.System.getInt(getContentResolver(),
-                Settings.System.BATTERY_PERCENTAGE_STATUS_ICON, 0) == 1);
+                Settings.System.BATTERY_PERCENTAGE_STATUS_ICON, 1) == 1);
         /* Battery Percentage Color */
         mBatteryPercentColorPreference = prefSet.findPreference(UI_BATTERY_PERCENT_COLOR);
         /* Show Clock */

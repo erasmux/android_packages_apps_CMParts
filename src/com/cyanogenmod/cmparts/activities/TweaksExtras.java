@@ -277,7 +277,7 @@ public class TweaksExtras extends PreferenceActivity implements Preference.OnPre
         Settings.System.putInt(getContentResolver(), Settings.System.NOTIF_ITEM_TITLE_COLOR, BLACK);
         Settings.System.putInt(getContentResolver(), Settings.System.NOTIF_ITEM_TEXT_COLOR, BLACK);
         Settings.System.putInt(getContentResolver(), Settings.System.NOTIF_ITEM_TIME_COLOR, BLACK);
-        Settings.System.putInt(getContentResolver(), Settings.System.BATTERY_PERCENTAGE_STATUS_ICON, SET_OFF);
+        Settings.System.putInt(getContentResolver(), Settings.System.BATTERY_PERCENTAGE_STATUS_ICON, SET_ON);
         Settings.System.putInt(getContentResolver(), Settings.System.SHOW_STATUS_CLOCK, SET_ON);
         Settings.System.putInt(getContentResolver(), Settings.System.SHOW_STATUS_DBM, SET_OFF);
         Settings.System.putInt(getContentResolver(), Settings.System.SHOW_PLMN_LS, SET_ON);
@@ -354,15 +354,15 @@ public class TweaksExtras extends PreferenceActivity implements Preference.OnPre
                             s.equals(Settings.System.NOTIF_EXPANDED_BAR_COLOR)) {
                         color = WHITE;
                     } else
-                    if (s.equals(Settings.System.SHOW_STATUS_CLOCK) ||        // all default on items
+                    if (s.equals(Settings.System.BATTERY_PERCENTAGE_STATUS_ICON) || // all default on items
+			    s.equals(Settings.System.SHOW_STATUS_CLOCK) ||
                             s.equals(Settings.System.SHOW_PLMN_LS) ||
                             s.equals(Settings.System.SHOW_SPN_LS) ||
                             s.equals(Settings.System.SHOW_PLMN_SB) ||
                             s.equals(Settings.System.SHOW_SPN_SB)) {
                         color = SET_ON;
                     } else
-                    if (s.equals(Settings.System.BATTERY_PERCENTAGE_STATUS_ICON) ||         // all default off items
-                            s.equals(Settings.System.SHOW_STATUS_DBM) ||
+                    if (s.equals(Settings.System.SHOW_STATUS_DBM) ||                // all default off items
                             s.equals(Settings.System.NOTIF_BAR_CUSTOM) ||
                             s.equals(Settings.System.NOTIF_EXPANDED_BAR_CUSTOM) ||
                             s.equals(Settings.System.HDPI_BATTERY_ALIGNMENT)) {
