@@ -262,18 +262,18 @@ public class TweaksExtras extends PreferenceActivity implements Preference.OnPre
     }
 
     private void resetUITweaks() {
-        Settings.System.putInt(getContentResolver(), Settings.System.CLOCK_COLOR, BLACK);
-        Settings.System.putInt(getContentResolver(), Settings.System.DBM_COLOR, BLACK);
-        Settings.System.putInt(getContentResolver(), Settings.System.DATE_COLOR, BLACK);
-        Settings.System.putInt(getContentResolver(), Settings.System.SPN_LABEL_COLOR, BLACK);
+        Settings.System.putInt(getContentResolver(), Settings.System.CLOCK_COLOR, -1184275);
+        Settings.System.putInt(getContentResolver(), Settings.System.DBM_COLOR, -1184275);
+        Settings.System.putInt(getContentResolver(), Settings.System.DATE_COLOR, -3355444);
+        Settings.System.putInt(getContentResolver(), Settings.System.SPN_LABEL_COLOR, -4473925);
         Settings.System.putInt(getContentResolver(), Settings.System.PLMN_LABEL_COLOR, BLACK);
         Settings.System.putInt(getContentResolver(), Settings.System.BATTERY_PERCENTAGE_STATUS_COLOR, WHITE);
-        Settings.System.putInt(getContentResolver(), Settings.System.NEW_NOTIF_TICKER_COLOR, BLACK);
-        Settings.System.putInt(getContentResolver(), Settings.System.NOTIF_COUNT_COLOR, WHITE);
-        Settings.System.putInt(getContentResolver(), Settings.System.NO_NOTIF_COLOR, WHITE);
+        Settings.System.putInt(getContentResolver(), Settings.System.NEW_NOTIF_TICKER_COLOR, -1184275);
+        Settings.System.putInt(getContentResolver(), Settings.System.NOTIF_COUNT_COLOR, -1184275);
+        Settings.System.putInt(getContentResolver(), Settings.System.NO_NOTIF_COLOR, -3355444);
         Settings.System.putInt(getContentResolver(), Settings.System.CLEAR_BUTTON_LABEL_COLOR, BLACK);
-        Settings.System.putInt(getContentResolver(), Settings.System.ONGOING_NOTIF_COLOR, WHITE);
-        Settings.System.putInt(getContentResolver(), Settings.System.LATEST_NOTIF_COLOR, WHITE);
+        Settings.System.putInt(getContentResolver(), Settings.System.ONGOING_NOTIF_COLOR, -3355444);
+        Settings.System.putInt(getContentResolver(), Settings.System.LATEST_NOTIF_COLOR, -3355444);
         Settings.System.putInt(getContentResolver(), Settings.System.NOTIF_ITEM_TITLE_COLOR, BLACK);
         Settings.System.putInt(getContentResolver(), Settings.System.NOTIF_ITEM_TEXT_COLOR, BLACK);
         Settings.System.putInt(getContentResolver(), Settings.System.NOTIF_ITEM_TIME_COLOR, BLACK);
@@ -284,7 +284,7 @@ public class TweaksExtras extends PreferenceActivity implements Preference.OnPre
         Settings.System.putInt(getContentResolver(), Settings.System.SHOW_SPN_LS, SET_ON);
         Settings.System.putInt(getContentResolver(), Settings.System.SHOW_PLMN_SB, SET_ON);
         Settings.System.putInt(getContentResolver(), Settings.System.SHOW_SPN_SB, SET_ON);
-        Settings.System.putInt(getContentResolver(), Settings.System.NOTIF_BAR_COLOR, WHITE);
+        Settings.System.putInt(getContentResolver(), Settings.System.NOTIF_BAR_COLOR, BLACK);
         Settings.System.putInt(getContentResolver(), Settings.System.NOTIF_BAR_CUSTOM, SET_OFF);
         Settings.System.putInt(getContentResolver(), Settings.System.NOTIF_EXPANDED_BAR_COLOR, WHITE);
         Settings.System.putInt(getContentResolver(), Settings.System.NOTIF_EXPANDED_BAR_CUSTOM, SET_OFF);
@@ -346,14 +346,24 @@ public class TweaksExtras extends PreferenceActivity implements Preference.OnPre
                 }
                 catch (SettingNotFoundException e) {
                     if (s.equals(Settings.System.BATTERY_PERCENTAGE_STATUS_COLOR) ||  // all white colors
-                            s.equals(Settings.System.NOTIF_COUNT_COLOR) ||
-                            s.equals(Settings.System.NO_NOTIF_COLOR) ||
-                            s.equals(Settings.System.ONGOING_NOTIF_COLOR) ||
-                            s.equals(Settings.System.LATEST_NOTIF_COLOR) ||
-                            s.equals(Settings.System.NOTIF_BAR_COLOR) ||
                             s.equals(Settings.System.NOTIF_EXPANDED_BAR_COLOR)) {
                         color = WHITE;
                     } else
+                    if (s.equals(Settings.System.CLOCK_COLOR) ||  // almost white colors
+			    s.equals(Settings.System.DBM_COLOR) ||
+			    s.equals(Settings.System.NEW_NOTIF_TICKER_COLOR) ||
+			    s.equals(Settings.System.NOTIF_COUNT_COLOR)) {
+			color = -1184275;
+		    }
+		    if (s.equals(Settings.System.DATE_COLOR) ||
+			s.equals(Settings.System.NO_NOTIF_COLOR) ||
+			s.equals(Settings.System.ONGOING_NOTIF_COLOR) ||
+			s.equals(Settings.System.LATEST_NOTIF_COLOR)) {
+			color = -3355444;
+		    } else
+		    if (s.equals(Settings.System.SPN_LABEL_COLOR)) {
+			color = -4473925;
+		    }
                     if (s.equals(Settings.System.BATTERY_PERCENTAGE_STATUS_ICON) || // all default on items
 			    s.equals(Settings.System.SHOW_STATUS_CLOCK) ||
                             s.equals(Settings.System.SHOW_PLMN_LS) ||

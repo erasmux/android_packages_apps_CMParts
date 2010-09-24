@@ -3,7 +3,7 @@
    <PreferenceCategory android:title="@string/date_title">
       <Preference android:key="date_color"
          android:title="@string/title_date_color"
-         android:defaultValue="-16777216" />
+         android:defaultValue="-3355444" />
    </PreferenceCategory>
    <PreferenceCategory android:title="@string/plmn_title">
       <CheckBoxPreference android:key="show_plmn_ls"
@@ -36,7 +36,7 @@
          android:disableDependentsState="false" />
       <Preference android:key="spn_label_color"
          android:title="@string/title_spn_label_color"
-         android:defaultValue="-16777216"
+         android:defaultValue="-4473925"
          android:dependency="show_spn_sb" />
    </PreferenceCategory>
 </PreferenceScreen>
