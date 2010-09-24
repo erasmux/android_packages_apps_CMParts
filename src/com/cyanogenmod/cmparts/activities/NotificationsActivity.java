@@ -152,7 +152,7 @@ public class NotificationsActivity extends PreferenceActivity {
             return Settings.System.getInt(getContentResolver(), Settings.System.NEW_NOTIF_TICKER_COLOR);
         }
         catch (SettingNotFoundException e) {
-            return -1184275;
+            return -16777216;
         }
     }
     ColorPickerDialog.OnColorChangedListener mNotifTickerColorListener = 
@@ -169,7 +169,7 @@ public class NotificationsActivity extends PreferenceActivity {
             return Settings.System.getInt(getContentResolver(), Settings.System.NOTIF_COUNT_COLOR);
         }
         catch (SettingNotFoundException e) {
-            return -1184275;
+            return -1;
         }
     }
     ColorPickerDialog.OnColorChangedListener mNotifCountColorListener = 
@@ -186,7 +186,7 @@ public class NotificationsActivity extends PreferenceActivity {
             return Settings.System.getInt(getContentResolver(), Settings.System.NO_NOTIF_COLOR);
         }
         catch (SettingNotFoundException e) {
-            return -3355444;
+            return -1;
         }
     }
     ColorPickerDialog.OnColorChangedListener mNoNotifColorListener = 
@@ -220,7 +220,7 @@ public class NotificationsActivity extends PreferenceActivity {
             return Settings.System.getInt(getContentResolver(), Settings.System.ONGOING_NOTIF_COLOR);
         }
         catch (SettingNotFoundException e) {
-            return -3355444;
+            return -1;
         }
     }
     ColorPickerDialog.OnColorChangedListener mOngoingNotifColorListener = 
@@ -237,7 +237,7 @@ public class NotificationsActivity extends PreferenceActivity {
             return Settings.System.getInt(getContentResolver(), Settings.System.LATEST_NOTIF_COLOR);
         }
         catch (SettingNotFoundException e) {
-            return -3355444;
+            return -1;
         }
     }
     ColorPickerDialog.OnColorChangedListener mLatestNotifColorListener = 
