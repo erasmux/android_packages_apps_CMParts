@@ -374,7 +374,7 @@ public class TweaksExtras extends PreferenceActivity implements Preference.OnPre
         Settings.System.putInt(getContentResolver(), Settings.System.DATE_COLOR, BLACK);
         Settings.System.putInt(getContentResolver(), Settings.System.SPN_LABEL_COLOR, BLACK);
         Settings.System.putInt(getContentResolver(), Settings.System.PLMN_LABEL_COLOR, BLACK);
-        Settings.System.putInt(getContentResolver(), Settings.System.BATTERY_PERCENTAGE_STATUS_COLOR, WHITE);
+        Settings.System.putInt(getContentResolver(), Settings.System.BATTERY_PERCENTAGE_STATUS_COLOR, BLACK);
         Settings.System.putInt(getContentResolver(), Settings.System.NEW_NOTIF_TICKER_COLOR, BLACK);
         Settings.System.putInt(getContentResolver(), Settings.System.NOTIF_COUNT_COLOR, WHITE);
         Settings.System.putInt(getContentResolver(), Settings.System.NO_NOTIF_COLOR, WHITE);
@@ -452,8 +452,7 @@ public class TweaksExtras extends PreferenceActivity implements Preference.OnPre
                     color = Settings.System.getInt(getContentResolver(), s);
                 }
                 catch (SettingNotFoundException e) {
-                    if (s.equals(Settings.System.BATTERY_PERCENTAGE_STATUS_COLOR) ||  // all white colors
-                            s.equals(Settings.System.NOTIF_COUNT_COLOR) ||
+                    if (s.equals(Settings.System.NOTIF_COUNT_COLOR) ||  // all white colors
                             s.equals(Settings.System.NO_NOTIF_COLOR) ||
                             s.equals(Settings.System.ONGOING_NOTIF_COLOR) ||
                             s.equals(Settings.System.LATEST_NOTIF_COLOR) ||

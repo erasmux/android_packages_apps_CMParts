@@ -118,7 +118,7 @@ public class StatusBarActivity extends PreferenceActivity {
     }
 
     /* Battery Font Color */
-    SettingsColorHandler mBatteryColorHandler = new SettingsColorHandler(Settings.System.BATTERY_PERCENTAGE_STATUS_COLOR, -1);
+    SettingsColorHandler mBatteryColorHandler = new SettingsColorHandler(Settings.System.BATTERY_PERCENTAGE_STATUS_COLOR, -16777216);
 
     /* Clock Font Color */
     SettingsColorHandler mClockColorHandler = new SettingsColorHandler(Settings.System.CLOCK_COLOR, -16777216);
