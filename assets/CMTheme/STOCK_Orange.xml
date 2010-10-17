@@ -22,9 +22,9 @@
 <show_spn_ls>1</show_spn_ls>
 <show_plmn_sb>1</show_plmn_sb>
 <show_spn_sb>1</show_spn_sb>
-<notif_bar_color>#ff000000</notif_bar_color>
+<notif_bar_color>#ffba4b14</notif_bar_color>
 <notif_bar_custom>1</notif_bar_custom>
-<notif_expanded_bar_color>#80000000</notif_expanded_bar_color>
+<notif_expanded_bar_color>#cbba4b14</notif_expanded_bar_color>
 <notif_expanded_bar_custom>1</notif_expanded_bar_custom>
 <!--This last one is for HDPI devices only - the values are: 0:right, 1:left, 2:center
 	This is the ONLY place this value can be set -->

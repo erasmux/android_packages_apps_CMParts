@@ -121,10 +121,10 @@ public class StatusBarActivity extends PreferenceActivity {
     SettingsColorHandler mBatteryColorHandler = new SettingsColorHandler(Settings.System.BATTERY_PERCENTAGE_STATUS_COLOR, -1);
 
     /* Clock Font Color */
-    SettingsColorHandler mClockColorHandler = new SettingsColorHandler(Settings.System.CLOCK_COLOR, -16777216);
+    SettingsColorHandler mClockColorHandler = new SettingsColorHandler(Settings.System.CLOCK_COLOR, -1);
 
     /* dBm Signal Font Color */
-    SettingsColorHandler mDbmColorHandler = new SettingsColorHandler(Settings.System.DBM_COLOR, -16777216);
+    SettingsColorHandler mDbmColorHandler = new SettingsColorHandler(Settings.System.DBM_COLOR, -1);
 
     private class SettingsColorHandler implements ColorPickerDialog.OnColorChangedListener {
 

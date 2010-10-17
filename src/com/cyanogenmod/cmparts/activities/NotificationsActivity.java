@@ -152,7 +152,7 @@ public class NotificationsActivity extends PreferenceActivity {
             return Settings.System.getInt(getContentResolver(), Settings.System.NEW_NOTIF_TICKER_COLOR);
         }
         catch (SettingNotFoundException e) {
-            return -16777216;
+            return -1;
         }
     }
     ColorPickerDialog.OnColorChangedListener mNotifTickerColorListener = 
@@ -254,7 +254,7 @@ public class NotificationsActivity extends PreferenceActivity {
             return Settings.System.getInt(getContentResolver(), Settings.System.NOTIF_ITEM_TITLE_COLOR);
         }
         catch (SettingNotFoundException e) {
-            return -16777216;
+            return -1;
         }
     }
     ColorPickerDialog.OnColorChangedListener mNotifItemTitleColorListener = 
@@ -271,7 +271,7 @@ public class NotificationsActivity extends PreferenceActivity {
             return Settings.System.getInt(getContentResolver(), Settings.System.NOTIF_ITEM_TEXT_COLOR);
         }
         catch (SettingNotFoundException e) {
-            return -16777216;
+            return -1;
         }
     }
     ColorPickerDialog.OnColorChangedListener mNotifItemTextColorListener = 
@@ -288,7 +288,7 @@ public class NotificationsActivity extends PreferenceActivity {
             return Settings.System.getInt(getContentResolver(), Settings.System.NOTIF_ITEM_TIME_COLOR);
         }
         catch (SettingNotFoundException e) {
-            return -16777216;
+            return -1;
         }
     }
     ColorPickerDialog.OnColorChangedListener mNotifItemTimeColorListener = 
@@ -304,7 +304,7 @@ public class NotificationsActivity extends PreferenceActivity {
             return Settings.System.getInt(getContentResolver(), Settings.System.NOTIF_BAR_COLOR);
         }
         catch (SettingNotFoundException e) {
-            return -16777216;
+            return -1;
         }
     }
     ColorPickerDialog.OnColorChangedListener mNotifBarColorListener = 
@@ -320,7 +320,7 @@ public class NotificationsActivity extends PreferenceActivity {
             return Settings.System.getInt(getContentResolver(), Settings.System.NOTIF_EXPANDED_BAR_COLOR);
         }
         catch (SettingNotFoundException e) {
-            return -16777216;
+            return 0x80000000;
         }
     }
     ColorPickerDialog.OnColorChangedListener mExpBarColorListener = 

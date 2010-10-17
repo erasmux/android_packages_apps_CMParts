@@ -102,7 +102,7 @@ public class DateProviderActivity extends PreferenceActivity {
             return Settings.System.getInt(getContentResolver(), Settings.System.DATE_COLOR);
         }
         catch (SettingNotFoundException e) {
-            return -16777216;
+            return -1;
         }
     }
     ColorPickerDialog.OnColorChangedListener mDateFontColorListener = 
@@ -119,7 +119,7 @@ public class DateProviderActivity extends PreferenceActivity {
             return Settings.System.getInt(getContentResolver(), Settings.System.PLMN_LABEL_COLOR);
         }
         catch (SettingNotFoundException e) {
-            return -16777216;
+            return -1;
         }
     }
     ColorPickerDialog.OnColorChangedListener mPlmnLabelColorListener = 
@@ -136,7 +136,7 @@ public class DateProviderActivity extends PreferenceActivity {
             return Settings.System.getInt(getContentResolver(), Settings.System.SPN_LABEL_COLOR);
         }
         catch (SettingNotFoundException e) {
-            return -16777216;
+            return -1;
         }
     }
     ColorPickerDialog.OnColorChangedListener mSpnLabelColorListener = 
