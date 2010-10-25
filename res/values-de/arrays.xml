@@ -71,6 +71,13 @@
     <item>30 Minuten</item>
   </string-array>
 
+  <string-array name="pref_compcache_size_entries">
+    <item>Ausgeschaltet</item>
+    <item>10%</item>
+    <item>18% (Standard)</item>
+    <item>26%</item>
+  </string-array>
+
   <string-array name="entries_light_filter_window">
     <item>10 Sekunden</item>
     <item>20 Sekunden</item>
