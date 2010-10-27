@@ -81,7 +81,7 @@
          android:key="expanded_color_mask"
          android:title="@string/expanded_color_mask"
          android:summary="@string/expanded_color_mask"
-         android:defaultValue="-1"
+         android:defaultValue="-16744193"
          android:dependency="expanded_widget" />
       <PreferenceScreen android:key="widget_picker"
           android:title="@string/title_widget_picker" android:summary="@string/summary_widget_picker">

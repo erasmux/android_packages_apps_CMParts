@@ -265,7 +265,7 @@ public class UIActivity extends PreferenceActivity implements OnPreferenceChange
             return Settings.System.getInt(getContentResolver(), Settings.System.EXPANDED_VIEW_WIDGET_COLOR);
         }
         catch (SettingNotFoundException e) {
-            return -16777216;
+            return 0xFF0080FF;
         }
     }
     ColorPickerDialog.OnColorChangedListener mWidgetColorListener =

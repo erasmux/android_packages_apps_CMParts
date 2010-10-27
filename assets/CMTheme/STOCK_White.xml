@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
 <cmparts>
-<battery_status_color_title>#ffffffff</battery_status_color_title>
+<battery_status_color_title>#ff000000</battery_status_color_title>
 <clock_color>#ff000000</clock_color>
 <dbm_color>#ff000000</dbm_color>
 <date_color>#ff000000</date_color>

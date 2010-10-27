@@ -304,7 +304,7 @@ public class NotificationsActivity extends PreferenceActivity {
             return Settings.System.getInt(getContentResolver(), Settings.System.NOTIF_BAR_COLOR);
         }
         catch (SettingNotFoundException e) {
-            return -1;
+            return 0xFF151520;
         }
     }
     ColorPickerDialog.OnColorChangedListener mNotifBarColorListener = 
@@ -320,7 +320,7 @@ public class NotificationsActivity extends PreferenceActivity {
             return Settings.System.getInt(getContentResolver(), Settings.System.NOTIF_EXPANDED_BAR_COLOR);
         }
         catch (SettingNotFoundException e) {
-            return 0x80000000;
+            return 0x80151520;
         }
     }
     ColorPickerDialog.OnColorChangedListener mExpBarColorListener = 
