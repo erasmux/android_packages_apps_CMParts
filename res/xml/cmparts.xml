@@ -50,7 +50,7 @@
     </PreferenceScreen>
 -->
 
-    <!-- CMStats -->
+<!-- CMStats not included
     <PreferenceScreen android:key="cmstats_settings"
 	    android:title="@string/cmstats_title" android:summary="@string/cmstats_summary">
         <intent
@@ -58,5 +58,6 @@
             android:targetPackage="com.cyanogenmod.stats"
             android:targetClass="com.cyanogenmod.stats.MainActivity" />
     </PreferenceScreen>
+-->
 
 </PreferenceScreen>
