@@ -102,7 +102,7 @@ public class DateProviderActivity extends PreferenceActivity {
             return Settings.System.getInt(getContentResolver(), Settings.System.DATE_COLOR);
         }
         catch (SettingNotFoundException e) {
-            return -1;
+            return 0xffeeeeee;
         }
     }
     ColorPickerDialog.OnColorChangedListener mDateFontColorListener = 

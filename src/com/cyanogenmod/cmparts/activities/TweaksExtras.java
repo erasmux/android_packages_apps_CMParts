@@ -369,9 +369,9 @@ public class TweaksExtras extends PreferenceActivity implements Preference.OnPre
     }
 
     private void resetUITweaks() {
-        Settings.System.putInt(getContentResolver(), Settings.System.CLOCK_COLOR, WHITE);
-        Settings.System.putInt(getContentResolver(), Settings.System.DBM_COLOR, WHITE);
-        Settings.System.putInt(getContentResolver(), Settings.System.DATE_COLOR, WHITE);
+        Settings.System.putInt(getContentResolver(), Settings.System.CLOCK_COLOR, 0xffeeeeee);
+        Settings.System.putInt(getContentResolver(), Settings.System.DBM_COLOR, 0xffeeeeee);
+        Settings.System.putInt(getContentResolver(), Settings.System.DATE_COLOR, 0xffeeeeee);
         Settings.System.putInt(getContentResolver(), Settings.System.SPN_LABEL_COLOR, WHITE);
         Settings.System.putInt(getContentResolver(), Settings.System.PLMN_LABEL_COLOR, WHITE);
         Settings.System.putInt(getContentResolver(), Settings.System.BATTERY_PERCENTAGE_STATUS_COLOR, BLACK);
@@ -391,9 +391,9 @@ public class TweaksExtras extends PreferenceActivity implements Preference.OnPre
         Settings.System.putInt(getContentResolver(), Settings.System.SHOW_SPN_LS, SET_ON);
         Settings.System.putInt(getContentResolver(), Settings.System.SHOW_PLMN_SB, SET_ON);
         Settings.System.putInt(getContentResolver(), Settings.System.SHOW_SPN_SB, SET_ON);
-        Settings.System.putInt(getContentResolver(), Settings.System.NOTIF_BAR_COLOR, 0xFF151520);
+        Settings.System.putInt(getContentResolver(), Settings.System.NOTIF_BAR_COLOR, BLACK);
         Settings.System.putInt(getContentResolver(), Settings.System.NOTIF_BAR_CUSTOM, SET_ON);
-        Settings.System.putInt(getContentResolver(), Settings.System.NOTIF_EXPANDED_BAR_COLOR, 0x80151520);
+        Settings.System.putInt(getContentResolver(), Settings.System.NOTIF_EXPANDED_BAR_COLOR, 0x80000000);
         Settings.System.putInt(getContentResolver(), Settings.System.NOTIF_EXPANDED_BAR_CUSTOM, SET_ON);
         Settings.System.putInt(getContentResolver(), Settings.System.HDPI_BATTERY_ALIGNMENT, SET_OFF);
         Toast.makeText(getApplicationContext(), R.string.reset_ui_success, Toast.LENGTH_SHORT).show();
@@ -453,14 +453,17 @@ public class TweaksExtras extends PreferenceActivity implements Preference.OnPre
                 }
                 catch (SettingNotFoundException e) {
                     if (s.equals(Settings.System.CLEAR_BUTTON_LABEL_COLOR) ||  // black colors
-                        s.equals(Settings.System.BATTERY_PERCENTAGE_STATUS_COLOR)) {
+                        s.equals(Settings.System.BATTERY_PERCENTAGE_STATUS_COLOR) ||
+                        s.equals(Settings.System.NOTIF_BAR_COLOR)) {
                         color = BLACK;
                     } else
-                    if (s.equals(Settings.System.NOTIF_BAR_COLOR)) {
-                        color = 0xFF151520;
+                    if (s.equals(Settings.System.CLOCK_COLOR) ||
+                        s.equals(Settings.System.DBM_COLOR) ||
+                        s.equals(Settings.System.DATE_COLOR)) {
+                        color = 0xffeeeeee;
                     } else
                     if (s.equals(Settings.System.NOTIF_EXPANDED_BAR_COLOR)) {
-                        color = 0x80151520;
+                        color = 0x80000000;
                     }
                     if (s.equals(Settings.System.BATTERY_PERCENTAGE_STATUS_ICON) || // all default on items
                             s.equals(Settings.System.NOTIF_BAR_CUSTOM) ||
