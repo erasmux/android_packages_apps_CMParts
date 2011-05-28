@@ -80,7 +80,7 @@ public class DisplayActivity extends PreferenceActivity implements OnPreferenceC
         /* Rotate 180 */
         mRotate180Pref = (CheckBoxPreference) prefSet.findPreference(ROTATE_180_PREF);
         mRotate180Pref.setChecked(Settings.System.getInt(getContentResolver(),
-                Settings.System.ACCELEROMETER_ROTATE_180, 0) == 1);
+                Settings.System.ACCELEROMETER_ROTATION_MODE, 0) == 2);
     }
 
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
@@ -102,10 +102,13 @@ public class DisplayActivity extends PreferenceActivity implements OnPreferenceC
                     Settings.System.ELECTRON_BEAM_ANIMATION_OFF, value ? 1 : 0);
         }
 
+
         if (preference == mRotate180Pref) {
             value = mRotate180Pref.isChecked();
-            Settings.System.putInt(getContentResolver(),
-                    Settings.System.ACCELEROMETER_ROTATE_180, value ? 1 : 0);
+
+            if (value) // FIXME bitwise
+                Settings.System.putInt(getContentResolver(),
+                    Settings.System.ACCELEROMETER_ROTATION_MODE, 2);
         }
 
         return true;
