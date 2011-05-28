@@ -23,6 +23,10 @@ import android.provider.Settings.SettingNotFoundException;
 public class UIActivity extends PreferenceActivity implements OnPreferenceChangeListener {
 
     /* Preference Screens */
+    private static final String STATUS_BAR_SCREEN = "status_bar_settings";
+
+    private static final String DATE_PROVIDER_SCREEN = "date_provider_settings";
+
     private static final String NOTIFICATION_SCREEN = "notification_settings";
 
     private static final String NOTIFICATION_TRACKBALL = "trackball_notifications";
@@ -40,6 +44,8 @@ public class UIActivity extends PreferenceActivity implements OnPreferenceChange
     private static final String UI_EXP_WIDGET_PICKER = "widget_picker";
 
     private PreferenceScreen mStatusBarScreen;
+
+    private PreferenceScreen mDateProviderScreen;
 
     private PreferenceScreen mNotificationScreen;
 
@@ -86,6 +92,8 @@ public class UIActivity extends PreferenceActivity implements OnPreferenceChange
         PreferenceScreen prefSet = getPreferenceScreen();
 
         /* Preference Screens */
+        mStatusBarScreen = (PreferenceScreen) prefSet.findPreference(STATUS_BAR_SCREEN);
+        mDateProviderScreen = (PreferenceScreen) prefSet.findPreference(DATE_PROVIDER_SCREEN);
         mNotificationScreen = (PreferenceScreen) prefSet.findPreference(NOTIFICATION_SCREEN);
         mTrackballScreen = (PreferenceScreen) prefSet.findPreference(NOTIFICATION_TRACKBALL);
         mExtrasScreen = (PreferenceScreen) prefSet.findPreference(EXTRAS_SCREEN);
@@ -140,6 +148,9 @@ public class UIActivity extends PreferenceActivity implements OnPreferenceChange
         /* Preference Screens */
         if (preference == mStatusBarScreen) {
             startActivity(mStatusBarScreen.getIntent());
+        }
+        if (preference == mDateProviderScreen) {
+            startActivity(mDateProviderScreen.getIntent());
         }
         if (preference == mNotificationScreen) {
             startActivity(mNotificationScreen.getIntent());
