@@ -554,4 +554,6 @@
     <string name="cpu_max_freq_summary">Maximum CPU frequency\nCurrently: %s</string>
     <string name="cpu_set_on_boot">Set on boot</string>
     <string name="cpu_set_on_boot_summary">Restore CPU settings on boot</string>
+    <string name="cpu_sched_latency_title">Scheduler latency</string>
+    <string name="cpu_sched_latency_summary">Current value: %s\nHigher values may improve gaming and lower values responsiveness.</string>
 </resources>

@@ -57,7 +57,9 @@ public class CPUReceiver extends BroadcastReceiver {
         String governor = prefs.getString(CPUActivity.GOV_PREF, null);
         String minFrequency = prefs.getString(CPUActivity.MIN_FREQ_PREF, null);
         String maxFrequency = prefs.getString(CPUActivity.MAX_FREQ_PREF, null);
-        boolean noSettings = (governor == null) && (minFrequency == null) && (maxFrequency == null);
+        String schedLatency = prefs.getString(CPUActivity.SCHED_LATENCY_PREF, null);
+        String schedMinGran = prefs.getString(CPUActivity.SCHED_MINGRAN_PREF, null);
+        boolean noSettings = (governor == null) && (minFrequency == null) && (maxFrequency == null) && (schedLatency == null);
 
         if (noSettings) {
             Log.d(TAG, "No settings saved. Nothing to restore.");
@@ -74,6 +76,11 @@ public class CPUReceiver extends BroadcastReceiver {
             }
             if (minFrequency != null && frequencies.contains(minFrequency)) {
                 CPUActivity.writeOneLine(CPUActivity.FREQ_MIN_FILE, minFrequency);
+            }
+            if (schedLatency != null) {
+                CPUActivity.writeOneLine(CPUActivity.SCHED_LATENCY_FILE, schedLatency);
+                if (schedMinGran != null)
+                    CPUActivity.writeOneLine(CPUActivity.SCHED_MINGRAN_FILE, schedMinGran);
             }
             Log.d(TAG, "CPU settings restored.");
         }

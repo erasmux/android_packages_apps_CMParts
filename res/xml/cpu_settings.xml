@@ -10,6 +10,11 @@
   <ListPreference android:key="pref_freq_max" android:dialogTitle="@string/cpu_max_freq_title"
                   android:title="@string/cpu_max_freq_title" android:summary="Maximum CPU frequency" />
 
+  <ListPreference android:key="pref_sched_latency_ns"
+                  android:title="@string/cpu_sched_latency_title"
+                  android:dialogTitle="@string/cpu_sched_latency_title"
+                  android:summary="Scheduler latency (current value: %s)\nHigher values may improve gaming and low values may improve responsiveness." />
+
   <CheckBoxPreference android:key="pref_set_on_boot"
                       android:title="@string/cpu_set_on_boot" android:summary="@string/cpu_set_on_boot_summary"/>
 

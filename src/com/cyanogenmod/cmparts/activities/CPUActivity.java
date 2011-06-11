@@ -23,12 +23,16 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
+import android.preference.PreferenceManager;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.File;
 
 //
 // CPU Related Settings
@@ -45,24 +49,38 @@ public class CPUActivity extends PreferenceActivity implements
     public static final String FREQ_MAX_FILE = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq";
     public static final String FREQ_MIN_FILE = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq";
     public static final String SOB_PREF = "pref_set_on_boot";
+    public static final String SCHED_LATENCY_PREF = "pref_sched_latency_ns";
+    public static final String SCHED_MINGRAN_PREF = "pref_sched_min_granularity";
+    public static final String SCHED_LATENCY_FILE = "/proc/sys/kernel/sched_latency_ns";
+    public static final String SCHED_MINGRAN_FILE = "/proc/sys/kernel/sched_min_granularity_ns";
+    public static final int SCHED_LATENCY_MINGRAN_RATIO = 10;
+    public static final int SCHED_MINGRAN_MAX = 6000000;
+    public static final int[] SCHED_LATENCY_OPTIONS = {1000000,2000000,4000000,6000000,10000000,15000000,20000000,30000000,40000000,60000000};
 
     private static final String TAG = "CPUSettings";
 
     private String mGovernorFormat;
     private String mMinFrequencyFormat;
     private String mMaxFrequencyFormat;
+    private String mSchedLatencyFormat;
 
     private ListPreference mGovernorPref;
     private ListPreference mMinFrequencyPref;
     private ListPreference mMaxFrequencyPref;
+    private ListPreference mSchedLatencyPref;
+
+    public SharedPreferences mPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
         mGovernorFormat = getString(R.string.cpu_governors_summary);
         mMinFrequencyFormat = getString(R.string.cpu_min_freq_summary);
         mMaxFrequencyFormat = getString(R.string.cpu_max_freq_summary);
+        mSchedLatencyFormat = getString(R.string.cpu_sched_latency_summary);
 
         String[] availableGovernors = readOneLine(GOVERNORS_LIST_FILE).split(" ");
         String[] availableFrequencies = new String[0];
@@ -71,6 +89,13 @@ public class CPUActivity extends PreferenceActivity implements
              availableFrequencies = availableFrequenciesLine.split(" ");
         String[] frequencies;
         String temp;
+
+        String[] latencyOptions = new String[SCHED_LATENCY_OPTIONS.length];
+        String[] latencies = new String[SCHED_LATENCY_OPTIONS.length];
+        for (int i = 0; i < latencies.length; i++) {
+            latencyOptions[i] = Integer.toString(SCHED_LATENCY_OPTIONS[i]);
+            latencies[i] = toMs(SCHED_LATENCY_OPTIONS[i]);
+        }
 
         frequencies = new String[availableFrequencies.length];
         for (int i = 0; i < frequencies.length; i++) {
@@ -108,6 +133,20 @@ public class CPUActivity extends PreferenceActivity implements
         mMaxFrequencyPref.setValue(temp);
         mMaxFrequencyPref.setSummary(String.format(mMaxFrequencyFormat, toMHz(temp)));
         mMaxFrequencyPref.setOnPreferenceChangeListener(this);
+
+        temp = readOneLine(SCHED_LATENCY_FILE);
+
+        mSchedLatencyPref = (ListPreference) PrefScreen.findPreference(SCHED_LATENCY_PREF);
+        if (latencyAvailable()) {
+            mSchedLatencyPref.setEntryValues(latencyOptions);
+            mSchedLatencyPref.setEntries(latencies);
+            mSchedLatencyPref.setValue(temp);
+            mSchedLatencyPref.setSummary(String.format(mSchedLatencyFormat, toMs(Integer.valueOf(temp))));
+            mSchedLatencyPref.setOnPreferenceChangeListener(this);
+        } else {
+            PrefScreen.removePreference(mSchedLatencyPref);
+            mSchedLatencyPref = null;
+        }
     }
 
     @Override
@@ -127,6 +166,12 @@ public class CPUActivity extends PreferenceActivity implements
         temp = readOneLine(GOVERNOR);
         mGovernorPref.setValue(temp);
         mGovernorPref.setSummary(String.format(mGovernorFormat, temp));
+
+        if (mSchedLatencyPref != null) {
+            temp = readOneLine(SCHED_LATENCY_FILE);
+            mSchedLatencyPref.setValue(temp);
+            mSchedLatencyPref.setSummary(String.format(mSchedLatencyFormat, toMs(Integer.valueOf(temp))));
+        }
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -139,6 +184,8 @@ public class CPUActivity extends PreferenceActivity implements
                 fname = FREQ_MIN_FILE;
             } else if (preference == mMaxFrequencyPref) {
                 fname = FREQ_MAX_FILE;
+            } else if (preference == mSchedLatencyPref) {
+                return changeLatency((String) newValue);
             }
 
             if (writeOneLine(fname, (String) newValue)) {
@@ -195,4 +242,29 @@ public class CPUActivity extends PreferenceActivity implements
     private String toMHz(String mhzString) {
         return new StringBuilder().append(Integer.valueOf(mhzString) / 1000).append(" MHz").toString();
     }
+
+    private String toMs(int value) {
+        return new StringBuilder().append(Math.round(value / 1000000.0)).append(" ms").toString();
+    }
+
+    private boolean latencyAvailable() {
+        return new File(SCHED_LATENCY_FILE).canWrite();
+    }
+
+    private boolean changeLatency(String newValue) {
+        int latencyNs = Integer.valueOf(newValue);
+        int minGranNs = Math.min(SCHED_MINGRAN_MAX, latencyNs / SCHED_LATENCY_MINGRAN_RATIO);
+        String minGran = Integer.toString(minGranNs);
+
+        if (writeOneLine(SCHED_LATENCY_FILE, newValue)) {
+            writeOneLine(SCHED_MINGRAN_FILE, minGran);
+            Editor mEdit = mPrefs.edit();
+            mEdit.putString(SCHED_MINGRAN_PREF, minGran);
+            mEdit.commit();
+            mSchedLatencyPref.setSummary(String.format(mSchedLatencyFormat, toMs(latencyNs)));
+            return true;
+        }
+        else return false;
+    }
+
 }
