@@ -125,6 +125,7 @@ public class CPUActivity extends PreferenceActivity implements
         mMinFrequencyPref.setSummary(String.format(mMinFrequencyFormat, toMHz(temp)));
 
         temp = readOneLine(GOVERNOR);
+        mGovernorPref.setValue(temp);
         mGovernorPref.setSummary(String.format(mGovernorFormat, temp));
     }
 
