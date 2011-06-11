@@ -15,7 +15,7 @@
 <notifications_title_color>#ffffffff</notifications_title_color>
 <notifications_text_color>#ffffffff</notifications_text_color>
 <notifications_time_color>#ffffffff</notifications_time_color>
-<battery_percentage_status_icon>1</battery_percentage_status_icon>
+<battery_percentage_status_icon>0</battery_percentage_status_icon>
 <show_status_clock>1</show_status_clock>
 <show_status_dbm>0</show_status_dbm>
 <show_plmn_ls>1</show_plmn_ls>

@@ -384,7 +384,7 @@ public class TweaksExtras extends PreferenceActivity implements Preference.OnPre
         Settings.System.putInt(getContentResolver(), Settings.System.NOTIF_ITEM_TITLE_COLOR, WHITE);
         Settings.System.putInt(getContentResolver(), Settings.System.NOTIF_ITEM_TEXT_COLOR, WHITE);
         Settings.System.putInt(getContentResolver(), Settings.System.NOTIF_ITEM_TIME_COLOR, WHITE);
-        Settings.System.putInt(getContentResolver(), Settings.System.BATTERY_PERCENTAGE_STATUS_ICON, SET_ON);
+        Settings.System.putInt(getContentResolver(), Settings.System.BATTERY_PERCENTAGE_STATUS_ICON, SET_OFF);
         Settings.System.putInt(getContentResolver(), Settings.System.SHOW_STATUS_CLOCK, SET_ON);
         Settings.System.putInt(getContentResolver(), Settings.System.SHOW_STATUS_DBM, SET_OFF);
         Settings.System.putInt(getContentResolver(), Settings.System.SHOW_PLMN_LS, SET_ON);
@@ -465,8 +465,7 @@ public class TweaksExtras extends PreferenceActivity implements Preference.OnPre
                     if (s.equals(Settings.System.NOTIF_EXPANDED_BAR_COLOR)) {
                         color = 0x80000000;
                     }
-                    if (s.equals(Settings.System.BATTERY_PERCENTAGE_STATUS_ICON) || // all default on items
-                            s.equals(Settings.System.NOTIF_BAR_CUSTOM) ||
+                    if (s.equals(Settings.System.NOTIF_BAR_CUSTOM) || // all default on items
                             s.equals(Settings.System.NOTIF_EXPANDED_BAR_CUSTOM) ||
 			    s.equals(Settings.System.SHOW_STATUS_CLOCK) ||
                             s.equals(Settings.System.SHOW_PLMN_LS) ||
@@ -476,6 +475,7 @@ public class TweaksExtras extends PreferenceActivity implements Preference.OnPre
                         color = SET_ON;
                     } else
                     if (s.equals(Settings.System.SHOW_STATUS_DBM) ||                // all default off items
+                            s.equals(Settings.System.BATTERY_PERCENTAGE_STATUS_ICON) || 
                             s.equals(Settings.System.HDPI_BATTERY_ALIGNMENT)) {
                         color = SET_OFF;
                     }
