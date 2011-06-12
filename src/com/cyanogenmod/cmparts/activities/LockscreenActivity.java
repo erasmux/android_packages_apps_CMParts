@@ -91,7 +91,7 @@ public class LockscreenActivity extends PreferenceActivity implements OnPreferen
         /* Lockscreen Style */
         mLockscreenStylePref = (ListPreference) prefSet.findPreference(LOCKSCREEN_STYLE_PREF);
         int lockscreenStyle = Settings.System.getInt(getContentResolver(),
-                Settings.System.LOCKSCREEN_STYLE_PREF, 1);
+                Settings.System.LOCKSCREEN_STYLE_PREF, 2);
         mLockscreenStylePref.setValue(String.valueOf(lockscreenStyle));
         mLockscreenStylePref.setOnPreferenceChangeListener(this);
         if (!isDefaultLockscreenStyle()) {
@@ -329,7 +329,7 @@ public class LockscreenActivity extends PreferenceActivity implements OnPreferen
 
     private boolean isDefaultLockscreenStyle() {
         int lockscreenStyle = Settings.System.getInt(getContentResolver(),
-                Settings.System.LOCKSCREEN_STYLE_PREF, 1);
+                Settings.System.LOCKSCREEN_STYLE_PREF, 2);
         if (lockscreenStyle == 1) {
             return true;
         } else {
